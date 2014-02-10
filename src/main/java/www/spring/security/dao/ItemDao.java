@@ -17,7 +17,7 @@ public interface ItemDao {
 
 	void udpate(Item item);
 
-	void delete(Item item);
+	void delete(Item item);  
 	
 	InputStream getPicture(Integer itemId);
 }
