@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+				<!-- 운영 -->
+				<!-- Resource 	auth="Container" 
+      							driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver" 
+      							maxActive="10" 
+      							maxIdle="5" 
+      							name="jdbc/genesisBBQ"  
+      							type="javax.sql.DataSource" 
+      							url="jdbc:sqlserver://203.231.40.6:1433;databaseName=GWMSDB" 
+      					    	username="gwms"
+      					    	password="gwms" 
+      			/ -->
+				<!-- 개발 -->
+				<!--  
+	     		<Resource 		auth="Container" 
+      							driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver" 
+      							maxActive="10" 
+      							maxIdle="5" 
+      							name="jdbc/IMDB"  
+      							type="javax.sql.DataSource" 
+      							url="jdbc:sqlserver://mtgi.dyndns.biz:1433;databaseName=IMDB" 
+      					    	username="SA"
+      					    	password="m!t2g#i4" 
+      			/>
+      			-->
+      			
+      			
+      			
+      			
+      			
+      			<!-- Local -->
+      			<!--  Resource auth="Container" 
+      							driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver" 
+      							maxActive="10" 
+      							maxIdle="5" 
+      							name="jdbc/genesisBBQ"  
+      							type="javax.sql.DataSource" 
+      							url="jdbc:sqlserver://10.0.0.1:1433;databaseName=TestDB" 
+      					    	username="youzang"
+      					    	password="1234" 
+      			/ -->  
+      			
+      		<!--  	
+      		<Resource 
+				name="jdbc/bskUS" 
+				auth="Container" 
+				type="javax.sql.DataSource" 
+				driverClassName="oracle.jdbc.OracleDriver" 
+				url="jdbc:oracle:thin:@203.239.145.221:1521:bsk" 
+				username="bskus" 
+				password="bskus" 
+				maxActive="20" 
+				maxIdle="10" 
+				maxWait="-1"
+			/> 
+			<Resource 
+				name="jdbc/bskAC" 
+				auth="Container" 
+				type="javax.sql.DataSource" 
+				driverClassName="oracle.jdbc.OracleDriver" 
+				url="jdbc:oracle:thin:@203.239.145.222:1523:bskacc" 
+				username="bskac" 
+				password="bskac" 
+				maxActive="20" 
+				maxIdle="10" 
+				maxWait="-1"
+			/>
+			<Resource 
+				name="jdbc/bskHR" 
+				auth="Container" 
+				type="javax.sql.DataSource" 
+				driverClassName="oracle.jdbc.OracleDriver" 
+				url="jdbc:oracle:thin:@203.239.145.221:1521:bsk" 
+				username="bskhr" 
+				password="bskhr" 
+				maxActive="20" 
+				maxIdle="10" 
+				maxWait="-1"
+			/>
+			
+			
+			<Resource 
+				name="jdbc/bskTS" 
+				auth="Container" 
+				type="javax.sql.DataSource" 
+				driverClassName="oracle.jdbc.OracleDriver" 
+				url="jdbc:oracle:thin:@203.239.145.221:1521:bsk" 
+				username="bskts" 
+				password="bskts" 
+				maxActive="20" 
+				maxIdle="10" 
+				maxWait="-1"
+			/>
+			
+			<Resource 
+				auth="Container" 
+				driverClassName="oracle.jdbc.driver.OracleDriver" 
+				maxActive="100" 
+				maxIdle="16" 
+				maxWait="-1"
+				name="jdbc/bskGW" 
+				password="BSKGW" 
+				type="javax.sql.DataSource" 
+				url="jdbc:oracle:thin:@203.239.145.222:1523:bskacc" 
+				username="BSKGW"
+			/>
+			-->
+			<!--  
+	 		<Resource 		auth="Container" 
+  							driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver" 
+  							maxActive="50" 
+  							maxIdle="12" 
+  							name="jdbc/Neomodule"  
+  							type="javax.sql.DataSource" 
+  							url="jdbc:sqlserver://neomodule.iptime.org:1433;databaseName=AdventureWorks2008R2" 
+  					    	username="neomodule"
+  					    	password="neomodule" 
+     		/>		
+     		-->	
+     		<!-- 
+     		<Resource 		auth="Container" 
+  							driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver" 
+  							maxActive="50" 
+  							maxIdle="12" 
+  							name="jdbc/Neomodule"  
+  							type="javax.sql.DataSource" 
+  							url="jdbc:sqlserver://10.0.0.1:1433;databaseName=AdventureWorks2012" 
+  					    	username="yck"
+  					    	password="yck1234!!" 
+     		/>		
+     		 -->
+     		
+     	<!-- 메일관련 jndi -->
+     	<!--   	
+	     <Resource 	auth="Container"
+	     			name="bizonMail" 
+	        		type="javax.mail.Session"
+	        		username="ck.you@wemakeprice.com"
+	        		password="yck025308"
+	        		mail.debug="false"
+	        		mail.user="ck.you@wemakeprice.com"
+	        		mail.from="ck.you@wemakeprice.com"
+	        		mail.transport.protocol="smtp" 
+	        		mail.smtp.host= "imap.gmail.com"
+	        		mail.smtp.auth= "true"
+	        		mail.smtp.port= "25"
+	        		mail.smtp.starttls.enable="true"
+	    />
+     	-->	
+      			
+</Context>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:security="http://www.springframework.org/schema/security"
+	xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-4.0.xsd 
+	http://www.springframework.org/schema/security 
+	http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+	
+	
+	<!--  권한자체가 필요없는 것들  -->
+	<security:http pattern="/item/resources**" security="none"></security:http>
+
+	<security:http auto-config="true" access-denied-page="/WEB-INF/views/noAuthority.jsp">
+		<security:intercept-url pattern="/item/create**" access="ROLE_ADMIN" />
+		<security:intercept-url pattern="/item/edit**" access="ROLE_ADMIN" />
+		<security:intercept-url pattern="/item/confirm**" access="ROLE_ADMIN" />
+		<security:intercept-url pattern="/item/index**" access="ROLE_USER" />
+		<security:intercept-url pattern="/item/search**" access="ROLE_USER" />
+		<!-- 
+			모든 사용자 접근 가능할 경우  IS_AUTHENTICATED_ANONYMOUSLY 줄것
+			none : 아예 인증을 안태운다 그래서 인증 정보를 아예가져 올 수없다.
+			 <intercept-url pattern="/images/**" filters="none" />
+			 IS_AUTHENTICATED_ANONYMOUSLY : 스프링 시큐리티는 태우지만 인증은 안하겠다는 정의
+		 -->
+		<security:intercept-url pattern="/item/test**" access="IS_AUTHENTICATED_ANONYMOUSLY" /> 
+		<!-- 
+		<security:intercept-url pattern="/item/resources**" access="permitAll" />
+		 -->
+		<security:form-login login-page="/login.html" authentication-failure-url="/login.html?login_error=1" default-target-url="/item/index.html" always-use-default-target="true" />
+		
+		<security:session-management>
+			<security:concurrency-control max-sessions="1" error-if-maximum-exceeded="true" />
+		</security:session-management>
+		<security:logout logout-url="/j_spring_security_logout" logout-success-url="/logout.html" invalidate-session="true" />
+		
+		<security:anonymous/>
+	</security:http>
+	
+	<!--id : admin ,  password : spring -->
+	<!--id : user , password : security -->
+	<!-- ShaPasswordEncoder 클래스 이용하여 패스워드 sha-256방식으로 변환 -->
+	<!-- 
+	<security:authentication-manager>
+		<security:authentication-provider>
+			<security:user-service>
+				<security:user name="admin" password="622a494d3ea8c7ba2fed4f37909f14d9b50ab412322de39be62c8d6c2418bfca" authorities="ROLE_ADMIN, ROLE_USER" />
+				<security:user name="user" password="5d2d3ceb7abe552344276d47d36a8175b7aeb250a9bf0bf00e850cd23ecf2e43" authorities="ROLE_USER" />
+			</security:user-service>
+			<security:password-encoder hash="sha-256"></security:password-encoder>
+		</security:authentication-provider>
+	</security:authentication-manager>
+	 -->
+	 
+	 
+	 <security:authentication-manager>
+	 	<security:authentication-provider user-service-ref="jdbcUserService">
+	 		<security:password-encoder hash="sha-256"></security:password-encoder>
+	 	</security:authentication-provider>	
+	 </security:authentication-manager>
+	 
+	 <!-- 
+	 <security:jdbc-user-service id="jdbcUserService" data-source-ref="dataSource"
+		users-by-username-query=" SELECT USER_ID, PASSWORD, ENABLED, USER_NAME FROM USERS WHERE USER_ID = ? "
+		authorities-by-username-query=" SELECT USER_ID, AUTHORITY FROM AUTHORITIES WHERE USER_ID = ? "
+	  />	 	
+	  -->
+
+	  <bean id="jdbcUserService" class="www.spring.security.improved.customuserdetails.jdbc.CustomJdbcUserDetailsManager">
+	  		<property name="usersByUsernameQuery" value=""></property>
+	  		<property name="authoritiesByUsernameQuery" value=""></property>
+	  		<property name="roleHierarchy" ref="roleHierarchy"></property><!-- 아래다가 빈 정의 할 것 -->
+	  		<property name="dataSource" ref="dataSource"></property>
+	  		<property name="mapClass" value=""></property><!-- 명일 매핑클래스부터 만들 것 -->
+	  </bean>
+	  
+	  
+
+	  
+	 
+</beans>
