@@ -40,6 +40,7 @@
 	<br>
 	<a href="index.html">돌아가기</a> <br>
 	<a href="../j_spring_security_logout">■로그아웃하기</a></div>
+
 </form:form>
 </body>
 </html>

@@ -58,23 +58,27 @@
 	 	</security:authentication-provider>	
 	 </security:authentication-manager>
 	 
-	 <!-- 
+	  <!--  
 	 <security:jdbc-user-service id="jdbcUserService" data-source-ref="dataSource"
 		users-by-username-query=" SELECT USER_ID, PASSWORD, ENABLED, USER_NAME FROM USERS WHERE USER_ID = ? "
 		authorities-by-username-query=" SELECT USER_ID, AUTHORITY FROM AUTHORITIES WHERE USER_ID = ? "
 	  />	 	
-	  -->
-
+	   -->
+	
+	 <!-- 권한관련 확장 테이블 -->
 	  <bean id="jdbcUserService" class="www.spring.security.improved.customuserdetails.jdbc.CustomJdbcUserDetailsManager">
-	  		<property name="usersByUsernameQuery" value=""></property>
-	  		<property name="authoritiesByUsernameQuery" value=""></property>
-	  		<property name="roleHierarchy" ref="roleHierarchy"></property><!-- 아래다가 빈 정의 할 것 -->
+	  		<property name="usersByUsernameQuery" value=" SELECT USER_ID, PASSWORD, ENABLED, USER_NAME FROM USERS WHERE USER_ID = ? "></property>
+	  		<property name="authoritiesByUsernameQuery" value=" SELECT USER_ID, AUTHORITY FROM AUTHORITIES WHERE USER_ID = ? "></property>
+	  		<property name="roleHierarchy" ref="roleHierarchy"></property>
 	  		<property name="dataSource" ref="dataSource"></property>
-	  		<property name="mapClass" value=""></property><!-- 명일 매핑클래스부터 만들 것 -->
+	  		<property name="mapClass" value="www.spring.security.rte.cmmn.CustomUserDetailsMapping"></property>
 	  </bean>
-	  
-	  
-
+	   
+	   
+	  <!-- 하위권한관련 -->
+	<bean id="roleHierarchy" class="org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl">
+		
+	</bean>
 	  
 	 
 </beans>

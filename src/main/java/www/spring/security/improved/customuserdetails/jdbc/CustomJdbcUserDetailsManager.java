@@ -10,6 +10,8 @@ import java.util.Set;
 
 import javax.sql.DataSource;
 
+import org.hibernate.metamodel.domain.Superclass;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContextException;
 import org.springframework.dao.DataAccessException;
 import org.springframework.security.access.hierarchicalroles.RoleHierarchy;
@@ -26,20 +28,76 @@ import www.spring.security.improved.userdetails.CustomUserDetails;
 public class CustomJdbcUserDetailsManager extends JdbcUserDetailsManager {
 	
 	
-	private CustomUserDetails customUserDetails = null;
+	private CustomUserDetails customUserDetails;
+	
     private CustomUsersByUsernameMapping customUsersByUsernameMapping;
     
     private String mapClass;
-    private RoleHierarchy roleHierarchy = null;
     
+    private RoleHierarchy roleHierarchy;
+
+	private Class<?> parameterTypes;
+    
+    
+    
+    @Autowired
 	public void setMapClass(String mapClass) {
-		this.mapClass = mapClass;
+    	//www.spring.security.rte.cmmn.CustomUserDetailsMapping
+    	System.out.println("mapCLass=>" + mapClass);
+		this.mapClass = mapClass;//
 	}
-	
+    
+    @Autowired
 	public void setRoleHierarchy(RoleHierarchy roleHierarchy) {
-		this.roleHierarchy = roleHierarchy;
+    	System.out.println("roleHierarchy=>" + roleHierarchy.getClass().getName());
+		this.roleHierarchy = roleHierarchy;//secuirty.xml 설정해야함 아직 설정 안되어있음..
 	}
-	
+    
+    //JdbcUserDetailsManager 슈퍼클래스에서 initDao 오버라이딩
+    @Override
+    protected void initDao()throws ApplicationContextException{
+    	super.initDao();
+    	try{
+    		initMappingSqlQueries();
+    	}catch(Exception e){
+    		logger.error("initDaoException : " + e.getMessage());
+    	}
+    }
+
+	private void initMappingSqlQueries() throws InvocationTargetException,
+    														IllegalAccessException, InstantiationException,
+    														NoSuchMethodException, ClassNotFoundException, Exception{
+		// TODO Auto-generated method stub
+		
+		Class<?> clazz = this.getLoadClass(this.mapClass);
+		Constructor<?> constructor = clazz.getConstructor(new Class[]{DataSource.class,String.class});
+		Object[] params = new Object[]{super.getDataSource() , super.getUsersByUsernameQuery()};
+		
+			
+		
+		
+		
+	}
+
+	//클래스 로더
+	private Class<?> getLoadClass(String mapClass) throws ClassNotFoundException,Exception {
+		// TODO Auto-generated method stub
+		
+		Class<?> clazz = null;
+		try{
+			clazz =  Thread.currentThread().getContextClassLoader().loadClass(mapClass);//security.xml에서 넘어온 매핑클래스 객체를 받는다.
+			
+	        if (clazz == null) {
+	            clazz = Class.forName(mapClass);
+	        }
+		}catch(ClassNotFoundException e){
+			throw new ClassNotFoundException();
+		}catch(Exception e){
+			throw new Exception(e);
+		}finally{}
+		return clazz;
+	}
+    
     
     
     
