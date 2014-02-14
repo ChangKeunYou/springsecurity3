@@ -72,7 +72,7 @@ public class CustomJdbcUserDetailsManager extends JdbcUserDetailsManager {
 		Class<?> clazz = this.getLoadClass(this.mapClass);
 		Constructor<?> constructor = clazz.getConstructor(new Class[]{DataSource.class,String.class});
 		Object[] params = new Object[]{super.getDataSource() , super.getUsersByUsernameQuery()};
-		
+		//git허브 테스트
 		//다형성에 의거한 객체로더 생성
 		this.customUsersByUsernameMapping = (CustomUsersByUsernameMapping)constructor.newInstance(params);
 		
