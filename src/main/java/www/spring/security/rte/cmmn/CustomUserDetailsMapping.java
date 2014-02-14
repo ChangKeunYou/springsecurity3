@@ -5,15 +5,19 @@ import java.sql.SQLException;
 
 import javax.sql.DataSource;
 
+import www.spring.security.improved.customuserdetails.jdbc.CustomUsersByUsernameMapping;
 import www.spring.security.improved.userdetails.CustomUserDetails;
-import www.spring.security.improved.userdetails.jdbc.CustomUsersByUsernameMapping;
+
 
 public class CustomUserDetailsMapping extends  CustomUsersByUsernameMapping{
+	
+	private static int k = 1;
 	
 	public CustomUserDetailsMapping(DataSource ds , String usersByUsernameQuery){
 		//System.out.println("ds===>" + ds.getClass().getName() + " : query===>" + usersByUsernameQuery);
 		super(ds , usersByUsernameQuery);   
-		System.out.println("ds===>" + ds.getClass().getName() + " : query===>" + usersByUsernameQuery);
+		System.out.println("ds===>" + ds.getClass().getName() + " : query===>" + usersByUsernameQuery + "count=>" + CustomUserDetailsMapping.k);
+		CustomUserDetailsMapping.k++;
 	}
 
 	@Override
