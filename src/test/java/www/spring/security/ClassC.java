@@ -30,7 +30,7 @@ public class ClassC {
 			ClassA a = (ClassA)constructor.newInstance(params);       
 			
 			a.test();
-			//System.out.println(clazz.getClass().getName()); test  !!test
+			//System.out.println(clazz.getClass().getName()); test  !!test-_-
 			
 			
 		}catch(Exception e){
