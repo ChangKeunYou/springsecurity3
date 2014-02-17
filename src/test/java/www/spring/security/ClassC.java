@@ -27,10 +27,10 @@ public class ClassC {
 			Class<?> clazz = classC.getLoadClass(mapClass);
 			Constructor<?> constructor = clazz.getConstructor(new Class[]{String.class});
 			Object[] params = new Object[] { " hello invoke Object " };
-			ClassA a = (ClassA)constructor.newInstance(params);  
+			ClassA a = (ClassA)constructor.newInstance(params);       
 			
 			a.test();
-			//System.out.println(clazz.getClass().getName()); test  !!
+			//System.out.println(clazz.getClass().getName()); test  !!test
 			
 			
 		}catch(Exception e){
