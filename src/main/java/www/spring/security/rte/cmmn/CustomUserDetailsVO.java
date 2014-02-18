@@ -45,5 +45,20 @@ public class CustomUserDetailsVO implements Serializable {
 	    public void setUserName(String userName) {
 	        this.userName = userName;
 	    }
+	    
+	    @Override
+	    public String toString(){
+	    	StringBuilder sb = new StringBuilder();
+	    	
+	    	
+	    	sb.append("{");
+	    		sb.append("userId : ").append(this.getUserId()).append(" , ");
+	    		sb.append("password : ").append(this.getPassWord()).append(" , ");
+	    		sb.append("userName : ").append(this.getUserName()).append("");
+	    	sb.append("}");
+	    	
+	    	return sb.toString();
+	    }
+	    
 	
 }

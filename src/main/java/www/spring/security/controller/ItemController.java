@@ -46,7 +46,7 @@ public class ItemController {
 		// 모델 생성
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("itemList", itemList);
-        logger.info("dataResult=>" + itemList.toString());
+        //logger.info("dataResult=>" + itemList.toString());
 		// 반환값이 되는 ModelAndView 인스턴스를 생성
 		ModelAndView modelAndView = new ModelAndView("index");
 		modelAndView.addAllObjects(model);
@@ -57,9 +57,7 @@ public class ItemController {
 	
 	@RequestMapping(value="edit" , method = {RequestMethod.GET,RequestMethod.POST})
 	public ModelAndView edit(@RequestParam("itemId")Integer itemId) {
-		logger.info("12121212121212121212");
 		ModelAndView modelAndView = new ModelAndView("update");
-		logger.info("##@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 		Item item = this.itemService.getItemByItemId(itemId);
 		modelAndView.addObject(item);
 		return modelAndView;
