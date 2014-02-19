@@ -5,7 +5,7 @@
 %>
 <html>
 <head>
-<title><spring:message code="itemMenu.title" /></title>
+<title><spring:message code="itemMenu.title" /></title> 
 </head>
 <body>
 <form:form method="POST" action="search.html">

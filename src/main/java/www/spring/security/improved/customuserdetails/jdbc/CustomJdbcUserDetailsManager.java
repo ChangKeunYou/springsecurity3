@@ -148,11 +148,11 @@ public class CustomJdbcUserDetailsManager extends JdbcUserDetailsManager {
         //가져온 유저의 권한 및 하위 권한까지 가져 올수있도록 해당 메서드 통해서 실행 하위 권한은 xml설정 디비를 통해서 가져온다
         Collection<? extends GrantedAuthority> authorities = this.roleHierarchy.getReachableGrantedAuthorities(dbAuths);
 		
-		/*
+		
 		for(GrantedAuthority authData: authList){
 			System.out.println("=============================" + authData.getAuthority() + "==========================");
 		}
-		*/
+		
 		
         //로그인한 유저의 아이디 패스워드 사용여부 권한 등등..해서 오브젝트 생성
 		return new CustomUserDetails(this.customUserDetails.getUsername(), this.customUserDetails.getPassword(),

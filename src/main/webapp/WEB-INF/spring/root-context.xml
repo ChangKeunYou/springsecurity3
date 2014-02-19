@@ -61,16 +61,28 @@
 	</bean>
 	
 	
-		<!-- MessageSource -->
+	<!-- MessageSource -->
 	<bean id="messageSource"
 		class="org.springframework.context.support.ResourceBundleMessageSource">
 		<property name="basenames">
 			<list>
-				<value>ApplicationResource</value>
-				<value>messages</value>
+				<value>www.spring.security.properties.ApplicationResource</value>
+				<value>www.spring.security.properties.messages</value>
 			</list>
 		</property>
 	</bean>
-	
+	 
+	 
+	 <!-- 
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+	    <property name="basenames">
+	    	<list>
+	    		<value>/WEB-INF/spring/properties/ApplicationResource</value>
+	    		<value>/WEB-INF/spring/properties/messages</value>
+	    	</list>
+	    </property>
+	</bean>
+	  -->
+	 
 		
 </beans>

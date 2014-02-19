@@ -88,16 +88,29 @@
 			</beans:value>
 		</beans:property>
 		-->
+		<property name="hierarchy">
+			<value>
+				ROLE_ADMIN > ROLE_USER 
+				ROLE_USER > ROLE_RESTRICTED
+				ROLE_RESTRICTED > IS_AUTHENTICATED_FULLY
+				IS_AUTHENTICATED_REMEMBERED > IS_AUTHENTICATED_ANONYMOUSLY
+			</value>
+		</property>
+		<!-- 하이버 네이트 설정 후 주석 풀고 할 것 -->
 		<!-- DB 사용 -->
-		<property name="hierarchy" ref="hierarchyStrings" /> 
+		<!-- <property name="hierarchy" ref="hierarchyStrings" />  -->
 	</bean>
 	
+	<!-- 하이버 네이트 설정 후 주석 풀고 할 것 -->
 	  <!-- 하위 권한을 가져오는 빈 -->
+	  <!-- 
 	 <bean id="hierarchyStrings" class="www.spring.security.improved.userdetails.hierarchicalroles.HierarchyStringsFactoryBean"
 	 	init-method="init">
-	 	<!-- 서비스 영역 빈 설정  -->
+	 	서비스 레이어 설정 	
 	 </bean>
-	 
+	  -->
+	  
+	  
 	 <!-- 하이버 네이트 설정 할 것 스프링 + 하이버네이트 -->
 	 
 	 
