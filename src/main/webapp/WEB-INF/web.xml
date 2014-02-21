@@ -10,7 +10,7 @@
 		<param-value>
 			/WEB-INF/spring/root-context.xml
 			/WEB-INF/spring/security/security.xml
-			/WEB-INF/spring/hibernate/hibernateConfig.xml
+			/WEB-INF/spring/hibernate/hibernateConfig.xml	<!-- 하이버 네이트 -->
 		</param-value>
 	</context-param>
 	
@@ -82,5 +82,15 @@
   	<welcome-file-list>
 		<welcome-file>/login.html</welcome-file>
 	</welcome-file-list>
+	
+	<!-- jndi관련 설정 -->
+	 <resource-ref>
+  		<description>Hibernate</description>
+  		<res-ref-name>jndi/hibernate</res-ref-name>
+  		<res-type>javax.sql.DataSource</res-type>
+  		<res-auth>Container</res-auth>
+  		<res-sharing-scope>Shareable</res-sharing-scope>
+  	</resource-ref>
+	
 
 </web-app>

@@ -50,7 +50,7 @@ public class ItemController {
 		// 반환값이 되는 ModelAndView 인스턴스를 생성
 		ModelAndView modelAndView = new ModelAndView("index");
 		modelAndView.addAllObjects(model);
-        
+	logger.info("ItemController index 메서드 실행");
 		return modelAndView;
 	}
 	

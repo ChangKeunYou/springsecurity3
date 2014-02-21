@@ -29,8 +29,7 @@
 	<tx:annotation-driven />
 	
     <aop:aspectj-autoproxy />
-	
-	
+
 		
 	<!-- url이름으로 컨트롤러와 매핑 일단 간단히 구현하기 위하여 사용.. -->
 	<!-- 
@@ -38,27 +37,23 @@
 		<property name="order" value="0"></property>
 	</bean>
 	 -->
-		<!-- Data Source -->
-	<bean id="dataSource"
-		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<!-- JDBC드라이버명 설정 -->
+	 	<!-- bean id="dsSlave" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" -->
+		<!-- Data Source : org.springframework.jdbc.datasource.DriverManagerDataSource -->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> 
 		<property name="driverClassName">
 			<value>com.mysql.jdbc.Driver</value>
 		</property>
-		<!-- JDBC접속 문자열 설정 -->
 		<property name="url">
-			<value>jdbc:mysql://localhost/spring?useUnicode=true&amp;characterEncoding=utf8
-			</value>
+			<value>jdbc:mysql://localhost/spring?useUnicode=true&amp;characterEncoding=utf8</value>
 		</property>
-		<!-- MySQL 유저ID 설정 -->
 		<property name="username">
 			<value>springuser</value>
 		</property>
-		<!-- MySQL 패스워드 설정 -->
 		<property name="password">
 			<value>springpassword</value>
 		</property>
 	</bean>
+
 	
 	
 	<!-- MessageSource -->
@@ -71,6 +66,20 @@
 			</list>
 		</property>
 	</bean>
+	 
+	     <!-- 리소스 관리 -->
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">	
+		<property name="locations">
+			<list>
+				<!-- 
+				<value>classpath:com/bizon/resources/properties/jdbc.properties</value>
+				 -->
+				<value>classpath:www/spring/security/properties/*.properties</value>
+			</list>
+		</property>
+	</bean>	
+	 
+	 
 	 
 	 
 	 <!-- 

@@ -17,17 +17,11 @@
 	http://www.springframework.org/schema/tx
 	http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 	
-	<import resource="./hibernate-jta.xml"/>
+	<tx:annotation-driven />
 	
-		
-	<bean id="dsHibernate" class="org.springframework.jndi.JndiObjectFactoryBean">
-		<property name="resourceRef" value="true" />
-		<property name="jndiName" value="jndi/hibernate" />
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dsHibernate"></property>
 	</bean>
 	
-		
-		
-		
-		
-		
+	
 	</beans>

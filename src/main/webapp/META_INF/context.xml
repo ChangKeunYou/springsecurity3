@@ -148,5 +148,24 @@
 	        		mail.smtp.starttls.enable="true"
 	    />
      	-->	
+     	
+     	  <Resource 	auth="Container" 
+      							driverClassName="com.mysql.jdbc.Driver" 
+      							factory="org.apache.commons.dbcp.BasicDataSourceFactory"
+							    loginTimeout="100"
+							    maxActive="50"
+							    maxIdle="15" 
+							    maxWait="10000"
+      							name="jndi/hibernate"  
+      							type="javax.sql.DataSource" 
+      							url="jdbc:mysql://localhost/spring?useUnicode=true&amp;characterEncoding=utf8" 
+      					    	username="springuser"
+      					    	password="springpassword" 
+      					    	testOnBorrow="true"
+    							validationQuery="SELECT 1"
+      			/> 
+     	
+     	
+     	
       			
 </Context>
