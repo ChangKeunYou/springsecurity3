@@ -25,9 +25,20 @@
 		<property name="jndiName" value="jndi/hibernate" />
 	</bean>
 	
-		
-		
-		
-		
+	<!-- sessionFactory 사용할 경우 -->	
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dsHibernate"></property>
+		<property name="packagesToScan" value="www.spring.security.model"></property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+				<prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
+				<prop key="hibernate.globally_quoted_identifiers">${hibernate.hbm2ddl.auto}</prop>
+			</props>
+		</property>
+	</bean>	
+	
+	
 		
 	</beans>
