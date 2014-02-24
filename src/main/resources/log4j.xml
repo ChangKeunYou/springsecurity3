@@ -36,6 +36,22 @@
 	  	<level value="trace" />
 	</logger>
 	
+	<!-- hibernate -->
+	<logger name="org.springframework.orm.hibernate4">
+		<level value="info" />
+	</logger>
+	
+	<logger name="org.hibernate">
+	    <level value="info"/>
+	</logger>
+	
+	<logger name="org.hibernate.SQL">
+	    <level value="info"/>
+	</logger>
+	
+	<logger name="org.hibernate.type">
+	    <level value="info"/>
+	</logger>
    
 	<!-- Root Logger -->
 	<root>

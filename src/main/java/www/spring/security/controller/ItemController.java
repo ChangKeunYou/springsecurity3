@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import www.spring.security.logic.HibernateItemService;
 import www.spring.security.logic.Item;
 import www.spring.security.logic.ItemService;
 
@@ -36,6 +37,9 @@ public class ItemController {
 	@Autowired
 	private ItemService itemService;
 	
+	@Autowired
+	private HibernateItemService hibernateItemService;
+	
 	private static final Logger logger = LoggerFactory.getLogger(ItemController.class);
 	
 	
@@ -48,6 +52,14 @@ public class ItemController {
 		model.put("itemList", itemList);
         //logger.info("dataResult=>" + itemList.toString());
 		// 반환값이 되는 ModelAndView 인스턴스를 생성
+		
+		
+		logger.info("@@@@@@@@@@@@@@@@@@=>" + this.hibernateItemService.getClass().getName());
+		
+		logger.info("#########################=>" + this.hibernateItemService.getItemList("findItemByID"));
+		
+		
+		
 		ModelAndView modelAndView = new ModelAndView("index");
 		modelAndView.addAllObjects(model);
 	logger.info("ItemController index 메서드 실행");

@@ -16,6 +16,7 @@ public class ItemServiceImpl implements ItemService {
 	@Autowired
 	private ItemDao itemDao;
 	
+	
 	public void deleteItem(Item item) {
 		this.itemDao.delete(item);
 	}

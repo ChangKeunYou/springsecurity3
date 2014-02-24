@@ -16,12 +16,38 @@
 	http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
 	http://www.springframework.org/schema/tx
 	http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
-	
-	<tx:annotation-driven />
-	
-	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	 
+	  
+	  <tx:annotation-driven transaction-manager="transactionManager_hibernate" proxy-target-class="true" />
+	 
+	 	  <!-- 
+	 <tx:annotation-driven /> 
+	  -->
+	 <!-- 
+	<bean id="transactionManager_Hibernate_Master" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dsHibernate"></property>
 	</bean>
-	
+	  -->
+	  
+	 <bean id="transactionManager_hibernate" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory" />
+        <property name="dataSource" ref="dsHibernate"></property>
+    </bean>
+	 
+	 
+	 <!-- 
+	 <tx:advice id="txAdvice" transaction-manager="transactionManager_Hibernate_Master">
+		<tx:attributes>
+			<tx:method name = "get*" read-only="true" propagation="NOT_SUPPORTED"/>
+			<tx:method name = "tx*" propagation = "REQUIRES_NEW" rollback-for="Exception" />
+			<tx:method name = "*" propagation = "SUPPORTS" />
+		</tx:attributes>
+	</tx:advice>
+	  -->
+	  <!--  
+	<aop:config>
+   		<aop:advisor pointcut="execution(public * www.spring.security.logic.*Impl.*(..))" advice-ref="txAdvice"/>
+   </aop:config>
+   -->
 	
 	</beans>

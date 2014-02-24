@@ -11,6 +11,7 @@ import javax.sql.DataSource;
 
 import www.spring.security.logic.Item;
 
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -32,6 +33,7 @@ public class ItemDaoImpl implements ItemDao {
 	//junit으로 테스트 할지도 몰라서 일단 주입받아서 시큐리티 부분만 테스트
 	private JdbcTemplate jdbcTemplate;
 
+	
 	@Autowired
 	public void setDataSource(DataSource dataSource) {
 		this.template = new SimpleJdbcTemplate(dataSource);
@@ -41,6 +43,8 @@ public class ItemDaoImpl implements ItemDao {
 	private static final String SELECT_ALL = "SELECT item_id, item_name, price, description FROM item";
 
 	public List<Item> findAll() {
+		
+		
 		RowMapper<Item> mapper = new BeanPropertyRowMapper<Item>(Item.class);
 		return this.template.query(ItemDaoImpl.SELECT_ALL, mapper);
 	}

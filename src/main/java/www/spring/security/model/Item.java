@@ -5,11 +5,15 @@ import java.io.Serializable;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
+import static javax.persistence.GenerationType.IDENTITY;
+
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.sql.Blob;
 import java.sql.Date;
+
+
 
 
 
@@ -19,20 +23,23 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-
+@NamedQueries({ @NamedQuery(name = "findItemByID", query = "select * from ITEM " )})
 @Entity
-@Table(name="ITEM")
+@Table(name="ITEM" , catalog="tutorials")
 public class Item implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 	@Column(name = "ITEM_ID")
 	private Integer itemId;
-
+	
 	@NotEmpty
 	@Column(name="ITEM_NAME")
 	private String itemName;
