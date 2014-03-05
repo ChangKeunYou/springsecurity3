@@ -31,23 +31,22 @@
 	  
 	 <bean id="transactionManager_hibernate" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory" />
-        <property name="dataSource" ref="dsHibernate"></property>
     </bean>
 	 
+	    
 	 
-	 <!-- 
-	 <tx:advice id="txAdvice" transaction-manager="transactionManager_Hibernate_Master">
+	 <tx:advice id="txAdvice" transaction-manager="transactionManager_hibernate">
 		<tx:attributes>
 			<tx:method name = "get*" read-only="true" propagation="NOT_SUPPORTED"/>
 			<tx:method name = "tx*" propagation = "REQUIRES_NEW" rollback-for="Exception" />
 			<tx:method name = "*" propagation = "SUPPORTS" />
 		</tx:attributes>
 	</tx:advice>
-	  -->
-	  <!--  
+	  
+	    
 	<aop:config>
    		<aop:advisor pointcut="execution(public * www.spring.security.logic.*Impl.*(..))" advice-ref="txAdvice"/>
    </aop:config>
-   -->
+   
 	
 	</beans>

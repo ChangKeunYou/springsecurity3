@@ -18,20 +18,20 @@
 	http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 	
 	
-	<!-- 
+	   
 	<bean id="dsHibernate" class="org.springframework.jndi.JndiObjectFactoryBean">
 		<property name="resourceRef" value="true" />
 		<property name="jndiName" value="jndi/hibernate" />
 	</bean>
-	  -->
 	  
-	<bean id="dsHibernate" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+	  <!-- 
+	 <bean id="dsHibernate" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="${jdbc.driverClassName}"/>
         <property name="url" value="${jdbc.url}"/>
         <property name="username" value="${jdbc.user}"/>
         <property name="password" value="${jdbc.pass}"/>
     </bean> 
-	  
+	    -->
 	 <!-- jndi 사용시 lazy-init=true를 반드시 줘야 드라이버 클래스를 로딩할 수 있다. -->
 	<!-- sessionFactory 사용할 경우 -->	
 	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
@@ -44,7 +44,11 @@
 				<prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
 				<prop key="hibernate.globally_quoted_identifiers">${hibernate.hbm2ddl.auto}</prop>
 				<prop key="hibernate.cache.provider_class">org.hibernate.cache.internal.NoCachingRegionFactory</prop>
-				<prop key="hibernate.current_session_context_class">org.hibernate.context.internal.ThreadLocalSessionContext</prop>
+				<prop key="hibernate.current_session_context_class">org.hibernate.context.internal.ThreadLocalSessionContext</prop> 
+				 <!-- 
+				<prop key="hibernate.current_session_context_class">thread</prop>
+				 -->
+				<prop key="hibernate.transaction.factory_class">org.hibernate.engine.transaction.internal.jdbc.JdbcTransactionFactory</prop>
 			</props>
 		</property>
 		<property name="mappingLocations">
@@ -53,8 +57,20 @@
 			</list>
 		</property>
 	</bean>	
+	
+	<!-- 
+		Hibernate3 -> Hibernate4
 
-		
+		org.hibernate.transaction.JDBCTransactionFactory
+		org.hibernate.engine.transaction.internal.jdbc.JdbcTransactionFactory
+
+		org.hibernate.transaction.JTATransactionFactory
+		org.hibernate.engine.transaction.internal.jta.JtaTransactionFactory
+
+		org.hibernate.transaction.CMTTransactionFactory
+		org.hibernate.engine.transaction.internal.jta.CMTTransactionFactory
+	 -->
+
 		<!--
 		* Common DAO Bean 
  		* Autowired 로 삽입 (가독성을 위하여 명시함)
@@ -62,7 +78,7 @@
 	<bean id="baseDao" class="www.spring.security.common.hibernate.dao.impl.HibernateBaseDao"> <!-- DynamicSqlMapClient use -->
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>	
-		
+	
 
 	 <bean id="persistenceExceptionTranslationPostProcessor" class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
 		<!-- 현제 에러 나는거 transactionManager 설정부터 하고 들어 가 볼 것 -->
