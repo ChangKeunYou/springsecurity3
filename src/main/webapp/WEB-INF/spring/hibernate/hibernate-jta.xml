@@ -17,9 +17,12 @@
 	http://www.springframework.org/schema/tx
 	http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 	 
-	  
+	  	 <!-- 
 	  <tx:annotation-driven transaction-manager="transactionManager_hibernate" proxy-target-class="true" />
-	 
+	  -->
+	    <tx:annotation-driven transaction-manager="transactionManager_hibernate" />
+	  
+	  
 	 	  <!-- 
 	 <tx:annotation-driven /> 
 	  -->
@@ -34,7 +37,7 @@
     </bean>
 	 
 	    
-	 
+	 <!-- 
 	 <tx:advice id="txAdvice" transaction-manager="transactionManager_hibernate">
 		<tx:attributes>
 			<tx:method name = "get*" read-only="true" propagation="NOT_SUPPORTED"/>
@@ -47,6 +50,6 @@
 	<aop:config>
    		<aop:advisor pointcut="execution(public * www.spring.security.logic.*Impl.*(..))" advice-ref="txAdvice"/>
    </aop:config>
-   
+    -->
 	
 	</beans>

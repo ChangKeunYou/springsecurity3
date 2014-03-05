@@ -10,7 +10,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import www.spring.security.common.hibernate.dao.service.HibernateDaoService;
-import org.hibernate.Transaction;
+//import org.hibernate.Transaction;
+
 
 
 @Service
@@ -20,7 +21,7 @@ public class HibernateItemServiceImpl implements HibernateItemService {
 	@Autowired
 	private HibernateDaoService hibernateDaoService; 
 	
-	@Transactional
+	
 	@Override
 	public List<Item> getItemList(String hibernateQueryId) {
 		// TODO Auto-generated method stub
@@ -32,13 +33,13 @@ public class HibernateItemServiceImpl implements HibernateItemService {
 		paramMap.put("param2","test2");
 		
 		
-		this.hibernateDaoService.selectListData(hibernateQueryId,paramMap);
+		List dataList = this.hibernateDaoService.selectListData(hibernateQueryId,paramMap);
 		
 		
 		
 		
 		
-		return null;
+		return dataList;
 	}
 	
 	

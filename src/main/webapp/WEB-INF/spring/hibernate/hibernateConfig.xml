@@ -81,6 +81,7 @@
 	
 
 	 <bean id="persistenceExceptionTranslationPostProcessor" class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
+	 
 		<!-- 현제 에러 나는거 transactionManager 설정부터 하고 들어 가 볼 것 -->
 		
 		

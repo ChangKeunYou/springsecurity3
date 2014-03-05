@@ -12,7 +12,10 @@
 		
 	  <sql-query name="findItemByID">
         <return alias="item" class="www.spring.security.model.Item" />
-        <![CDATA[ select * from ITEM ]]>
+        <![CDATA[ 
+        		select * 
+        		from ITEM 
+        ]]>
     </sql-query>
 	
 	

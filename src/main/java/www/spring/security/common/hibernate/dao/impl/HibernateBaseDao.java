@@ -25,7 +25,7 @@ public class HibernateBaseDao {
 	@Autowired(required=true)
 	@Resource(name = "sessionFactory")
 	public void setSessionFactory(SessionFactory sessionFactory) {  
-		//logger.info("======Hibernate DI Class=======>" + sessionFactory.getClass().getName());
+		logger.info("======Hibernate DI Class=======>" + sessionFactory.getClass().getName());
 		this.sessionFactory = sessionFactory;
 		/*
 		if(this.sessionFactory == null){
