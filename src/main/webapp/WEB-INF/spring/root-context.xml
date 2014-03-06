@@ -18,16 +18,18 @@
 	http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
-	
-	
+	<!-- 
+		<tx:annotation-driven />
+	 -->	
 		<!-- Transaction -->
 		<!--  -->
+		<!-- 
 	<bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
 		p:dataSource-ref="dataSource">
 	</bean>
-	
-	<tx:annotation-driven />
+	 -->
+
 	
     <aop:aspectj-autoproxy />
 
@@ -40,6 +42,7 @@
 	 -->
 	 	<!-- bean id="dsSlave" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" -->
 		<!-- Data Source : org.springframework.jdbc.datasource.DriverManagerDataSource -->
+		<!-- 
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> 
 		<property name="driverClassName">
 			<value>com.mysql.jdbc.Driver</value>
@@ -54,7 +57,7 @@
 			<value>springpassword</value>
 		</property>
 	</bean>
-
+	 -->
 	
 	
 	<!-- MessageSource -->

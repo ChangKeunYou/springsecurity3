@@ -20,8 +20,7 @@
 	  	 <!-- 
 	  <tx:annotation-driven transaction-manager="transactionManager_hibernate" proxy-target-class="true" />
 	  -->
-	    <tx:annotation-driven transaction-manager="transactionManager_hibernate" />
-	  
+	    <tx:annotation-driven  />
 	  
 	 	  <!-- 
 	 <tx:annotation-driven /> 
@@ -31,25 +30,40 @@
 		<property name="dataSource" ref="dsHibernate"></property>
 	</bean>
 	  -->
+	  <!-- spring default jdbc , ibatis , mybatis -->
 	  
-	 <bean id="transactionManager_hibernate" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+	<bean id="transactionManager_springJdbcDefault" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
+		p:dataSource-ref="dataSource">
+	</bean>
+	   
+	 <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+	  	<!-- <property name="dataSource" ref="dataSource_hibernate"></property>   -->
         <property name="sessionFactory" ref="sessionFactory" />
+        
     </bean>
 	 
-	    
-	 <!-- 
-	 <tx:advice id="txAdvice" transaction-manager="transactionManager_hibernate">
+	 <tx:advice id="txAdvice" transaction-manager="transactionManager_springJdbcDefault">
 		<tx:attributes>
 			<tx:method name = "get*" read-only="true" propagation="NOT_SUPPORTED"/>
+			<tx:method name = "up*" propagation = "REQUIRES_NEW" rollback-for="Exception" />
+			<tx:method name = "*" propagation = "SUPPORTS" />
+		</tx:attributes>
+	</tx:advice>
+	    
+	 
+	 <tx:advice id="txAdvice_hibernate" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name = "get*" read-only="true" propagation="REQUIRED" />
 			<tx:method name = "tx*" propagation = "REQUIRES_NEW" rollback-for="Exception" />
 			<tx:method name = "*" propagation = "SUPPORTS" />
 		</tx:attributes>
 	</tx:advice>
-	  
 	    
+	     
 	<aop:config>
    		<aop:advisor pointcut="execution(public * www.spring.security.logic.*Impl.*(..))" advice-ref="txAdvice"/>
+   	    <!-- <aop:advisor pointcut="execution(public * www.spring.security.logic.*Impl.*(..))" advice-ref="txAdvice_hibernate"/>  -->
    </aop:config>
-    -->
+     
 	
 	</beans>

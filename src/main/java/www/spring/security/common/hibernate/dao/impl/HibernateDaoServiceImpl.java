@@ -18,11 +18,11 @@ import www.spring.security.common.hibernate.dao.service.HibernateDaoService;
 import org.springframework.transaction.annotation.Transactional;
 
 
-@Transactional
+//@Transactional
 @Repository(value="hibernateDaoService")
 public class HibernateDaoServiceImpl extends HibernateBaseDao implements HibernateDaoService  {
 
-	//@Transactional(readOnly = true)
+	//@Transactional(readOnly = false)
 	@Override
 	public ArrayList<Object> selectListData(String hibernateQueryId, Object param) {
 		// TODO Auto-generated method stub

@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import www.spring.security.dao.ItemDao;
 
 @Service
-@Transactional
+//@Transactional
 public class ItemServiceImpl implements ItemService {
 
 	@Autowired
@@ -38,7 +38,11 @@ public class ItemServiceImpl implements ItemService {
 	}
 
 	public void updateItem(Item item) {
+		
 		this.itemDao.udpate(item);
+		
+		//throw new RuntimeException("transaction테스트!!");
+		
 	}
 
 	public InputStream getPicture(Integer itemId) {

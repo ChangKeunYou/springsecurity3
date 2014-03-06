@@ -20,6 +20,8 @@ public class HibernateBaseDao {
 	
 	private SessionFactory sessionFactory;
 		
+
+	
 	protected final Log logger = LogFactory.getLog(this.getClass());
 	
 	@Autowired(required=true)

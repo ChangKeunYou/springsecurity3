@@ -13,7 +13,7 @@ import www.spring.security.common.hibernate.dao.service.HibernateDaoService;
 //import org.hibernate.Transaction;
 
 
-
+//@Transactional
 @Service
 public class HibernateItemServiceImpl implements HibernateItemService {
 	
@@ -21,7 +21,7 @@ public class HibernateItemServiceImpl implements HibernateItemService {
 	@Autowired
 	private HibernateDaoService hibernateDaoService; 
 	
-	
+	//@Transactional(readOnly=true)
 	@Override
 	public List<Item> getItemList(String hibernateQueryId) {
 		// TODO Auto-generated method stub
