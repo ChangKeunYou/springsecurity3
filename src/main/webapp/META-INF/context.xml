@@ -29,7 +29,7 @@
 							    maxWait="10000"
       							name="jndi/hibernate"  
       							type="javax.sql.DataSource" 
-      							url="jdbc:mysql://192.168.0.91:3306/spring?useUnicode=true&amp;characterEncoding=utf8" 
+      							url="jdbc:mysql://localhost:3306/spring?useUnicode=true&amp;characterEncoding=utf8" 
       					    	username="springuser"
       					    	password="springpassword" 
       					    	testOnBorrow="true"
